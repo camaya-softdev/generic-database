@@ -17,7 +17,7 @@ services:
       - 3006:3306 # unique to all services 
     restart: unless-stopped
     networks:
-      cws: 
+      generic-network: 
         ipv4_address: 172.21.0.2 # unique
 
   phpmyadmin:
@@ -28,5 +28,5 @@ services:
       - PMA_ARBITRARY=1
     restart: unless-stopped
     networks:
-      cws: 
+      generic-network: 
         ipv4_address: 172.21.0.3
