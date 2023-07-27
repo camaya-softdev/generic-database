@@ -1,0 +1,32 @@
+version: '3.3'
+
+networks:
+  generic-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.0.0/24
+services:
+  mysql_db:
+    container_name: mysql-cluster
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: web-app
+    ports:
+      - 3006:3306 # unique to all services 
+    restart: unless-stopped
+    networks:
+      cws: 
+        ipv4_address: 172.21.0.2 # unique
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - 9001:80
+    environment:
+      - PMA_ARBITRARY=1
+    restart: unless-stopped
+    networks:
+      cws: 
+        ipv4_address: 172.21.0.3
