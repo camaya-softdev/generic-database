@@ -17,7 +17,7 @@ services:
       - 3006:3306 # unique to all services 
     restart: unless-stopped
     volumes:
-      - ./data:/data    
+      - ./data/mysql:/var/lib/mysql       
     networks:
       generic-network: 
         ipv4_address: 172.21.0.2 # unique
